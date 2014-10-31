@@ -20,14 +20,6 @@ class Stock():
         # read data
         file_input = codecs.open(path, "r", "gbk").readlines()
 
-        priceDate = 0
-        priceOpen = 0
-        priceHighest = 0
-        priceLowest = 0
-        priceClose = 0
-        volume = 0
-        total = 0
-
         # header - id, stock name
         ##header1 = input[0].split(" ")
 
@@ -38,7 +30,7 @@ class Stock():
         prices = file_input[2:-1]
 
         header = {}
-       # header indices
+        # header indices
         for x in header2:
             if codecs.encode(x.strip(), "gbk") == codecs.encode("日期", "gbk"):
                 header["date"] = header2.index(x)
@@ -55,20 +47,21 @@ class Stock():
             elif codecs.encode(x.strip(), "gbk") == codecs.encode("成交额", "gbk"):
                 header["total"] = header2.index(x)
 
-
-
         # generate price vectors
         for day in prices:
             data = day.split("\t")
-            priceDate = finance_plot.date2num(datetime.strptime(data[header["date"]].strip(), "%Y/%m/%d"))
-            priceOpen = float(data[header["open"]].strip())
-            priceHighest = float(data[header["highest"]].strip())
-            priceLowest = float(data[header["lowest"]].strip())
-            priceClose = float(data[header["close"]].strip())
-            volume = float(data[header["volume"]].strip())
-            total = float(data[header["total"]].strip())
+            pdate = finance_plot.date2num(datetime.strptime(data[header["date"]].strip(), "%Y/%m/%d"))
+            popen = float(data[header["open"]].strip())
+            phighest = float(data[header["highest"]].strip())
+            plowest = float(data[header["lowest"]].strip())
+            pclose = float(data[header["close"]].strip())
+            pvolume = float(data[header["volume"]].strip())
+            ptotal = float(data[header["total"]].strip())
 
-            self.quotes.append([priceDate, priceOpen, priceHighest, priceLowest, priceClose, volume, total])
+            self.quotes.append([pdate, popen, phighest, plowest, pclose, pvolume, ptotal])
+
+        return 0
+
 
     # def import_stock_data_from_zszq(path, identifier):
     #
