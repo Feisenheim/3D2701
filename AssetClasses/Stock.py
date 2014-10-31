@@ -3,7 +3,7 @@
 
 from datetime import datetime
 import codecs
-import matplotlib.dates as py_dates
+
 import matplotlib.pyplot as py_plot
 import matplotlib.finance as finance_plot
 
