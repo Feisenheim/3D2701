@@ -1,0 +1,20 @@
+﻿文档结构：
+1. api_docs 包含api文档(index.html)，把用户程序加密的文档，以及常见错误文档。
+2. pack-Vxxx.xxx.xxx.7z Python加密打包程序，把用户用python写的策略加密打包为exe和pyd。
+3. examples 包含四个策略实例。
+4. sparkquant*.whl python策略平台的安装包
+
+如何编写策略：
+1. pip install sparkquant-xxx.xxx.xxx-py3-none-any.whl
+2. cd到examples文件夹，运行以下命令启动demo程序：
+   # 包含常用api的用法
+   python simulation_demo.py
+   
+   # 买入持有策略
+   python BaH_demo.py
+   
+   # 买入持有策略2(增加策略参数交互和策略日志写入)
+   python BaH2_demo.py
+   
+   # 均线策略，需要依赖talib包
+   python SMA_demo.py
