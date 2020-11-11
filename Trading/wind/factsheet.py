@@ -4,29 +4,44 @@ from WindPy import w
 import pandas as pd
 import os
 
+########################################################################################################################
+########################################################################################################################
+def pe_data(ticker, date_begin, date_end):
+    data_wind = w.wsd(ticker, 'sec_name, pe_ttm, val_pe_percentile', date_begin, date_end, "ruleType=10;")
+    name = data_wind.Data[0]
+    pe_ttm = ['%.2f' % e for e in data_wind.Data[1]]
+    pe_percentile = ['%.2f' % e for e in data_wind.Data[2]]
+    print('Name: {0}'.format(name[0]))
+    print(pe_ttm)
+    print(pe_percentile)
+    print('The most recent PE percentile is {0}'.format(pe_percentile[-1]))
+
+
+########################################################################################################################
+########################################################################################################################
+
+
 dataDirectory = os.getcwd()+"\\Data"
 
-stockList = pd.DataFrame(pd.read_excel(dataDirectory+"\\stocks.xlsx", header=0))
+tickers = pd.DataFrame(pd.read_excel(dataDirectory+"\\stocks.xlsx", header=0))
 outputFile = open(dataDirectory+"\\output.xlsx","w")
 
-fields = ["CLOSE", "PE_TTM"]
-outputData = pd.DataFrame()
-d = datetime.date.today()
 
 w.start()
-
 if w.isconnected():
-
-    for n1 in range(stockList.size):
-        windData = w.wsd(stockList.iat[n1, 0], fields, d, d,)
-        r = list()
-        r.append(stockList.iat[n1, 0])
-        for l in windData.Data:
-            print(type(l))
-            r.append(l)
+   for i in range(tickers.size):
+       date_begin = "2015-11-01"
+       date_end = "2020-11-10"
+       pe_data(tickers.iat[i, 0], date_begin, date_end)
+   pe_data('600031.SH', date_begin, date_end)
+     #   r = list()
+      #  r.append(stockList.iat[n1, 0])
+       # for l in windData.Data:
+        #    print(type(l))
+         #   r.append(l)
             #r.append("{:.2f}".format(l))
-        print(r)
-        outputData.append(r)
+        #print(r)
+        #outputData.append(r)
         #print(outputData)
 
 
@@ -41,3 +56,6 @@ if w.isconnected():
         #outputData.to_excel(dataDirectory+"\\output.xlsx")
         #print(w.wsd(stockList.iat[n,0], "CLOSE", "2019-06-01", "2020-06-02",).Data)
         #print(w.wsd("601318.SH", "CLOSE", "2019-06-01", "2020-06-02",).Times)
+
+
+

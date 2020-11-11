@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979155ef-05f9-48ac-a133-855448a12b1d" name="Default Changelist" comment="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'" />
+    <list default="true" id="979155ef-05f9-48ac-a133-855448a12b1d" name="Default Changelist" comment="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trading/wind/Data/stocks.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Data/stocks.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trading/wind/factsheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/factsheet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/【凯丰投资】2020年4月投研分享——原油分析框架与近期行情解读（郑雅琦）(2)(1)(1).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/【凯丰投资】2020年4月投研分享——消费品投资的个人思考（王东升）(3)(1).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/亿纬锂能2017-2019交易表.xlsx" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +62,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
-  <component name="RunManager" selected="Python.Stock">
+  <component name="RunManager" selected="Python.factsheet">
     <configuration name="Stock" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3D2701" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,9 +149,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.factsheet" />
         <item itemvalue="Python.Stock" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.factsheet" />
         <item itemvalue="Python.try" />
       </list>
     </recent_temporary>
@@ -174,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599207840666</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'">
+      <created>1599208135914</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1599208135914</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,26 +213,26 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1500" y="441" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1599207790604" />
-    <state width="1500" height="379" key="GridCell.Tab.0.bottom" timestamp="1591917915392">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="3419" height="511" key="GridCell.Tab.0.bottom" timestamp="1605084877056">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1500" height="379" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591917915392" />
-    <state width="1500" height="379" key="GridCell.Tab.0.center" timestamp="1591917915392">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="3419" height="511" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
+    <state width="3419" height="511" key="GridCell.Tab.0.center" timestamp="1605084877056">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1500" height="379" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591917915392" />
-    <state width="1500" height="379" key="GridCell.Tab.0.left" timestamp="1591917915392">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="3419" height="511" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
+    <state width="3419" height="511" key="GridCell.Tab.0.left" timestamp="1605084877056">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1500" height="379" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591917915392" />
-    <state width="1500" height="379" key="GridCell.Tab.0.right" timestamp="1591917915392">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="3419" height="511" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
+    <state width="3419" height="511" key="GridCell.Tab.0.right" timestamp="1605084877056">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1500" height="379" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591917915392" />
-    <state x="270" y="57" key="SettingsEditor" timestamp="1591338866822">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="3419" height="511" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
+    <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1599208336314">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591338866822" />
+    <state x="1312" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1599208336314" />
     <state x="1550" y="491" key="svn.repositoryBrowser" timestamp="1599207891000">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
