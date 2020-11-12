@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="979155ef-05f9-48ac-a133-855448a12b1d" name="Default Changelist" comment="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading/wind/Data/stocks.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Data/stocks.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Trading/wind/factsheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/factsheet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/【凯丰投资】2020年4月投研分享——原油分析框架与近期行情解读（郑雅琦）(2)(1)(1).pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/【凯丰投资】2020年4月投研分享——消费品投资的个人思考（王东升）(3)(1).pdf" beforeDir="false" />
@@ -188,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599208135914</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="sd">
+      <created>1605088559381</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605088559381</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,29 +212,30 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'" />
-    <option name="LAST_COMMIT_MESSAGE" value="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'" />
+    <MESSAGE value="sd" />
+    <option name="LAST_COMMIT_MESSAGE" value="sd" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1500" y="441" key="FileChooserDialogImpl" timestamp="1599207790604">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1500" y="441" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1599207790604" />
-    <state width="3419" height="511" key="GridCell.Tab.0.bottom" timestamp="1605084877056">
+    <state width="3419" height="511" key="GridCell.Tab.0.bottom" timestamp="1605163341500">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3419" height="511" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
-    <state width="3419" height="511" key="GridCell.Tab.0.center" timestamp="1605084877056">
+    <state width="3419" height="511" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605163341500" />
+    <state width="3419" height="511" key="GridCell.Tab.0.center" timestamp="1605163341500">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3419" height="511" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
-    <state width="3419" height="511" key="GridCell.Tab.0.left" timestamp="1605084877056">
+    <state width="3419" height="511" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605163341500" />
+    <state width="3419" height="511" key="GridCell.Tab.0.left" timestamp="1605163341500">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3419" height="511" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
-    <state width="3419" height="511" key="GridCell.Tab.0.right" timestamp="1605084877056">
+    <state width="3419" height="511" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605163341500" />
+    <state width="3419" height="511" key="GridCell.Tab.0.right" timestamp="1605163341500">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3419" height="511" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605084877056" />
+    <state width="3419" height="511" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605163341500" />
     <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1599208336314">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
