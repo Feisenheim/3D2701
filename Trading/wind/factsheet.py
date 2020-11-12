@@ -25,26 +25,34 @@ def pe_data(ticker, date_begin, date_end):
         print('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf')
 
 
-def generate_factsheet(ticker):
+def generate_factsheet(tickers):
+    factsheet = pd.DataFrame()
     date = datetime.datetime.today().strftime('%Y-%m-%d')
     y = int(date.split('-')[0])
-    for i in range(3):
-        rD = '{0}1231'.format(str(y-i-1))
-        data_wind = w.wss(ticker, "tot_oper_rev", "unit=1;rptDate={0};rptType=1".format(rD))
-        print('{:,.2f}'.format(float(data_wind.Data[0][0])))
+    for i in range(tickers.size):
+        ticker = tickers.iat[i, 0]
+        col = [w.wss(ticker, "sec_name", "unit=1;rptDate={0};rptType=1".format(date.strip('-'))).Data[0][0]]
+
+        for j in range(4):
+            rD = '{0}1231'.format(str(y-j-1))
+            data_wind = w.wss(ticker, "tot_oper_rev", "unit=1;rptDate={0};rptType=1".format(rD))
+            col.append('{:,.2f}'.format(float(data_wind.Data[0][0])))
+        print(col)
+        factsheet.append(col)
+        print(factsheet)
+    return factsheet
 ########################################################################################################################
 ########################################################################################################################
 
 
 dataDirectory = os.getcwd()+"\\Data"
-
 tickers = pd.DataFrame(pd.read_excel(dataDirectory+"\\stocks.xlsx", header=0))
 outputFile = open(dataDirectory+"\\output.xlsx","w")
 
 
 w.start()
 if w.isconnected():
-    generate_factsheet('300014.SZ')
+    print(generate_factsheet(tickers))
    # for i in range(tickers.size):
    #     date_begin = "2015-11-01"
    #     date_end = "2020-11-10"
