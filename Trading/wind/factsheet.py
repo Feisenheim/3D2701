@@ -26,6 +26,9 @@ def pe_data(ticker, date_begin, date_end):
 
 
 def generate_factsheet(tickers):
+
+
+
     factsheet = pd.DataFrame()
     date = datetime.datetime.today().strftime('%Y-%m-%d')
     y = int(date.split('-')[0])
@@ -37,9 +40,10 @@ def generate_factsheet(tickers):
             rD = '{0}1231'.format(str(y-j-1))
             data_wind = w.wss(ticker, "tot_oper_rev", "unit=1;rptDate={0};rptType=1".format(rD))
             col.append('{:,.2f}'.format(float(data_wind.Data[0][0])))
-        print(col)
-        factsheet.append(col)
-        print(factsheet)
+     #   print(pd.DataFrame(col, columns=['{0}'.format(i)]))
+        factsheet.append(pd.DataFrame([1,2,3,4,4,5,5,66], columns=['{0}'.format(i)]))
+        factsheet.append(pd.DataFrame(col, columns=['{0}'.format(i)]))
+     #   print(factsheet)
     return factsheet
 ########################################################################################################################
 ########################################################################################################################
@@ -52,7 +56,7 @@ outputFile = open(dataDirectory+"\\output.xlsx","w")
 
 w.start()
 if w.isconnected():
-    print(generate_factsheet(tickers))
+    generate_factsheet(tickers)
    # for i in range(tickers.size):
    #     date_begin = "2015-11-01"
    #     date_end = "2020-11-10"
