@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Trading/Quantitative_Kit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -267,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605511060337</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="d">
+      <created>1605548215925</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605548215925</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,6 +299,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1174" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1605490693230" />
+    <state x="651" y="124" key="CommitChangelistDialog2" timestamp="1605548214842">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="651" y="124" key="CommitChangelistDialog2/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605548214842" />
     <state x="1500" y="441" key="FileChooserDialogImpl" timestamp="1599207790604">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
