@@ -97,11 +97,16 @@ def generate_factsheet(tickers):
                              '{0}归母扣非 yoy'.format(y - 1),]]
     factsheet.to_excel(dataDirectory + "\\output.xlsx")
     s = factsheet.loc['601100.SH']
+
     plt.subplot(221)
     plt.title('Total Revenue', fontname="Arial")
-    plt.plot(s[1:5], 'r-->')
-    plt.subplot(222)
+    plt.hist(s[1:5])
+    ax.
     plt.plot(s[6:10], 'y--*')
+    #plt.legend('total revenue', fontname="Arial")
+    # plt.legend('yoy', fontname="Arial")
+    # plt.subplot(221)
+
     plt.subplot(223)
     plt.plot(s[11:15], 'r--<')
     plt.subplot(224)
