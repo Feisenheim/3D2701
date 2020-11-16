@@ -1,6 +1,8 @@
 import datetime
 import string
 from WindPy import w
+import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
@@ -27,8 +29,6 @@ def pe_data(ticker, date_begin, date_end):
 
 def generate_factsheet(tickers):
 
-
-
     factsheet = pd.DataFrame()
     date = datetime.datetime.today().strftime('%Y-%m-%d')
     y = int(date.split('-')[0])
@@ -36,14 +36,67 @@ def generate_factsheet(tickers):
         ticker = tickers.iat[i, 0]
         col = [w.wss(ticker, "sec_name", "unit=1;rptDate={0};rptType=1".format(date.strip('-'))).Data[0][0]]
 
-        for j in range(4):
-            rD = '{0}1231'.format(str(y-j-1))
-            data_wind = w.wss(ticker, "tot_oper_rev", "unit=1;rptDate={0};rptType=1".format(rD))
-            col.append('{:,.2f}'.format(float(data_wind.Data[0][0])))
-     #   print(pd.DataFrame(col, columns=['{0}'.format(i)]))
-        factsheet.append(pd.DataFrame([1,2,3,4,4,5,5,66], columns=['{0}'.format(i)]))
-        factsheet.append(pd.DataFrame(col, columns=['{0}'.format(i)]))
-     #   print(factsheet)
+        for j in range(5):
+            rD = '{0}1231'.format(str(y-5+j))
+            data_wind = w.wss(ticker, "tot_oper_rev, wgsd_yoy_tr, np_belongto_parcomsh, wgsd_yoynetprofit, wgsd_yoynetprofit_deducted","unit=1;rptDate={0};rptType=1".format(rD))
+            for e in data_wind.Data:
+                col.append(e[0])
+
+        factsheet = factsheet.append(pd.DataFrame([col], index=[ticker], columns=['证券简称',
+                                                                                  '{0}总收入'.format(y - 5),
+                                                                                  '{0}总收入 yoy'.format(y - 5),
+                                                                                  '{0}归母'.format(y - 5),
+                                                                                  '{0}归母 yoy'.format(y - 5),
+                                                                                  '{0}归母扣非 yoy'.format(y - 5),
+                                                                                  '{0}总收入'.format(y - 4),
+                                                                                  '{0}总收入 yoy'.format(y - 4),
+                                                                                  '{0}归母'.format(y - 4),
+                                                                                  '{0}归母 yoy'.format(y - 4),
+                                                                                  '{0}归母扣非 yoy'.format(y - 4),
+                                                                                  '{0}总收入'.format(y - 3),
+                                                                                  '{0}总收入 yoy'.format(y - 3),
+                                                                                  '{0}归母'.format(y - 3),
+                                                                                  '{0}归母 yoy'.format(y - 3),
+                                                                                  '{0}归母扣非 yoy'.format(y - 3),
+                                                                                  '{0}总收入'.format(y - 2),
+                                                                                  '{0}总收入 yoy'.format(y - 2),
+                                                                                  '{0}归母'.format(y - 2),
+                                                                                  '{0}归母 yoy'.format(y - 2),
+                                                                                  '{0}归母扣非 yoy'.format(y - 2),
+                                                                                  '{0}总收入'.format(y - 1),
+                                                                                  '{0}总收入 yoy'.format(y - 1),
+                                                                                  '{0}归母'.format(y - 1),
+                                                                                  '{0}归母 yoy'.format(y - 1),
+                                                                                  '{0}归母扣非 yoy'.format(y - 1),
+                                                                                  ]))
+        factsheet=factsheet[['证券简称',
+                             '{0}总收入'.format(y - 5),
+                             '{0}总收入'.format(y - 4),
+                             '{0}总收入'.format(y - 3),
+                             '{0}总收入'.format(y - 2),
+                             '{0}总收入'.format(y - 1),
+                             '{0}总收入 yoy'.format(y - 5),
+                             '{0}总收入 yoy'.format(y - 4),
+                             '{0}总收入 yoy'.format(y - 3),
+                             '{0}总收入 yoy'.format(y - 2),
+                             '{0}总收入 yoy'.format(y - 1),
+                             '{0}归母'.format(y - 5),
+                             '{0}归母'.format(y - 4),
+                             '{0}归母'.format(y - 3),
+                             '{0}归母'.format(y - 2),
+                             '{0}归母'.format(y - 1),
+                             '{0}归母 yoy'.format(y - 5),
+                             '{0}归母 yoy'.format(y - 4),
+                             '{0}归母 yoy'.format(y - 3),
+                             '{0}归母 yoy'.format(y - 2),
+                             '{0}归母 yoy'.format(y - 1),
+                             '{0}归母扣非 yoy'.format(y - 5),
+                             '{0}归母扣非 yoy'.format(y - 4),
+                             '{0}归母扣非 yoy'.format(y - 3),
+                             '{0}归母扣非 yoy'.format(y - 2),
+                             '{0}归母扣非 yoy'.format(y - 1),]]
+    factsheet.to_excel(dataDirectory + "\\output.xlsx")
+    #print(factsheet)
     return factsheet
 ########################################################################################################################
 ########################################################################################################################
