@@ -19,10 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="979155ef-05f9-48ac-a133-855448a12b1d" name="Default Changelist" comment="PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'">
+    <list default="true" id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Trading/Quantitative_Kit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading/wind/Data/output.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Data/output.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading/wind/factsheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/factsheet.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +35,9 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -59,7 +62,28 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
-  <component name="RunManager" selected="Python.factsheet">
+  <component name="RunManager" selected="Python.Factor_Industry">
+    <configuration name="Factor_Industry" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="3D2701" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\feichen\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Trading/wind" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Stock" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3D2701" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -144,8 +168,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.factsheet" />
+      <item itemvalue="Python.Stock" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.try" />
+      <item itemvalue="Python.Factor_Industry" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Factor_Industry" />
         <item itemvalue="Python.factsheet" />
         <item itemvalue="Python.Stock" />
         <item itemvalue="Python.test" />
@@ -153,6 +185,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -267,38 +300,46 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1500" y="441" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1599207790604" />
-    <state width="3419" height="290" key="GridCell.Tab.0.bottom" timestamp="1605513093897">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="198" key="GridCell.Tab.0.bottom" timestamp="1605547859036">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="290" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093897" />
-    <state width="3419" height="290" key="GridCell.Tab.0.center" timestamp="1605513093896">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="198" key="GridCell.Tab.0.bottom/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605547859036" />
+    <state width="2027" height="198" key="GridCell.Tab.0.center" timestamp="1605547859035">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="290" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093896" />
-    <state width="3419" height="290" key="GridCell.Tab.0.left" timestamp="1605513093896">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="198" key="GridCell.Tab.0.center/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605547859035" />
+    <state width="2027" height="198" key="GridCell.Tab.0.left" timestamp="1605547859035">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="290" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093896" />
-    <state width="3419" height="290" key="GridCell.Tab.0.right" timestamp="1605513093896">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="198" key="GridCell.Tab.0.left/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605547859035" />
+    <state width="2027" height="198" key="GridCell.Tab.0.right" timestamp="1605547859035">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="290" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093896" />
-    <state width="3419" height="492" key="GridCell.Tab.1.bottom" timestamp="1605510943123">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="198" key="GridCell.Tab.0.right/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605547859035" />
+    <state width="2027" height="316" key="GridCell.Tab.1.bottom" timestamp="1605545050522">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="492" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
-    <state width="3419" height="492" key="GridCell.Tab.1.center" timestamp="1605510943123">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="316" key="GridCell.Tab.1.bottom/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605545050522" />
+    <state width="2027" height="316" key="GridCell.Tab.1.center" timestamp="1605545050522">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="492" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
-    <state width="3419" height="492" key="GridCell.Tab.1.left" timestamp="1605510943123">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="316" key="GridCell.Tab.1.center/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605545050522" />
+    <state width="2027" height="316" key="GridCell.Tab.1.left" timestamp="1605545050522">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="492" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
-    <state width="3419" height="492" key="GridCell.Tab.1.right" timestamp="1605510943123">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="2027" height="316" key="GridCell.Tab.1.left/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605545050522" />
+    <state width="2027" height="316" key="GridCell.Tab.1.right" timestamp="1605545050522">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="3419" height="492" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
+    <state width="2027" height="316" key="GridCell.Tab.1.right/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605545050522" />
     <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1605511069136">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -307,5 +348,16 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1550" y="491" key="svn.repositoryBrowser/0.0.3440.1400@0.0.3440.1400" timestamp="1599207891000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
