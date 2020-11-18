@@ -1,0 +1,271 @@
+Index: Trading/wind/factsheet.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import datetime\r\nimport string\r\nfrom WindPy import w\r\nimport numpy as np\r\nimport matplotlib.pyplot as plt\r\nimport pandas as pd\r\nimport os\r\n\r\n########################################################################################################################\r\n########################################################################################################################\r\ndef pe_data(ticker, date_begin, date_end):\r\n    data_wind = w.wsd(ticker, 'ipo_date', date_begin, date_end, \"ruleType=10;\")\r\n    if data_wind.Data[0][0] > datetime.datetime(date_begin):\r\n        date_begin = data_wind.Data[0][0]\r\n    data_wind = w.wsd(ticker, 'sec_name, pe_ttm, val_pe_percentile', date_begin, date_end, \"ruleType=10;\")\r\n\r\n    try:\r\n        pe_ttm = ['%.2f' % e for e in data_wind.Data[1]]\r\n        pe_percentile = ['%.2f' % e for e in data_wind.Data[2]]\r\n        name = data_wind.Data[0]\r\n        print('Name: {0}'.format(name[0]))\r\n        print(pe_ttm)\r\n        print(pe_percentile)\r\n        print('The most recent PE percentile is {0}'.format(pe_percentile[-1]))\r\n\r\n    except:\r\n        print('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf')\r\n\r\n\r\ndef generate_factsheet(tickers):\r\n\r\n    factsheet = pd.DataFrame()\r\n    date = datetime.datetime.today().strftime('%Y-%m-%d')\r\n    y = int(date.split('-')[0])\r\n    for i in range(tickers.size):\r\n        ticker = tickers.iat[i, 0]\r\n        col = [w.wss(ticker, \"sec_name\", \"unit=1;rptDate={0};rptType=1\".format(date.strip('-'))).Data[0][0]]\r\n\r\n        for j in range(5):\r\n            rD = '{0}1231'.format(str(y-5+j))\r\n            data_wind = w.wss(ticker, \"tot_oper_rev, wgsd_yoy_tr, np_belongto_parcomsh, wgsd_yoynetprofit, wgsd_yoynetprofit_deducted\",\"unit=1;rptDate={0};rptType=1\".format(rD))\r\n            for e in data_wind.Data:\r\n                col.append(e[0])\r\n\r\n        factsheet = factsheet.append(pd.DataFrame([col], index=[ticker], columns=['证券简称',\r\n                                                                                  '{0}总收入'.format(y - 5),\r\n                                                                                  '{0}总收入 yoy'.format(y - 5),\r\n                                                                                  '{0}归母'.format(y - 5),\r\n                                                                                  '{0}归母 yoy'.format(y - 5),\r\n                                                                                  '{0}归母扣非 yoy'.format(y - 5),\r\n                                                                                  '{0}总收入'.format(y - 4),\r\n                                                                                  '{0}总收入 yoy'.format(y - 4),\r\n                                                                                  '{0}归母'.format(y - 4),\r\n                                                                                  '{0}归母 yoy'.format(y - 4),\r\n                                                                                  '{0}归母扣非 yoy'.format(y - 4),\r\n                                                                                  '{0}总收入'.format(y - 3),\r\n                                                                                  '{0}总收入 yoy'.format(y - 3),\r\n                                                                                  '{0}归母'.format(y - 3),\r\n                                                                                  '{0}归母 yoy'.format(y - 3),\r\n                                                                                  '{0}归母扣非 yoy'.format(y - 3),\r\n                                                                                  '{0}总收入'.format(y - 2),\r\n                                                                                  '{0}总收入 yoy'.format(y - 2),\r\n                                                                                  '{0}归母'.format(y - 2),\r\n                                                                                  '{0}归母 yoy'.format(y - 2),\r\n                                                                                  '{0}归母扣非 yoy'.format(y - 2),\r\n                                                                                  '{0}总收入'.format(y - 1),\r\n                                                                                  '{0}总收入 yoy'.format(y - 1),\r\n                                                                                  '{0}归母'.format(y - 1),\r\n                                                                                  '{0}归母 yoy'.format(y - 1),\r\n                                                                                  '{0}归母扣非 yoy'.format(y - 1),\r\n                                                                                  ]))\r\n        factsheet=factsheet[['证券简称',\r\n                             '{0}总收入'.format(y - 5),\r\n                             '{0}总收入'.format(y - 4),\r\n                             '{0}总收入'.format(y - 3),\r\n                             '{0}总收入'.format(y - 2),\r\n                             '{0}总收入'.format(y - 1),\r\n                             '{0}总收入 yoy'.format(y - 5),\r\n                             '{0}总收入 yoy'.format(y - 4),\r\n                             '{0}总收入 yoy'.format(y - 3),\r\n                             '{0}总收入 yoy'.format(y - 2),\r\n                             '{0}总收入 yoy'.format(y - 1),\r\n                             '{0}归母'.format(y - 5),\r\n                             '{0}归母'.format(y - 4),\r\n                             '{0}归母'.format(y - 3),\r\n                             '{0}归母'.format(y - 2),\r\n                             '{0}归母'.format(y - 1),\r\n                             '{0}归母 yoy'.format(y - 5),\r\n                             '{0}归母 yoy'.format(y - 4),\r\n                             '{0}归母 yoy'.format(y - 3),\r\n                             '{0}归母 yoy'.format(y - 2),\r\n                             '{0}归母 yoy'.format(y - 1),\r\n                             '{0}归母扣非 yoy'.format(y - 5),\r\n                             '{0}归母扣非 yoy'.format(y - 4),\r\n                             '{0}归母扣非 yoy'.format(y - 3),\r\n                             '{0}归母扣非 yoy'.format(y - 2),\r\n                             '{0}归母扣非 yoy'.format(y - 1),]]\r\n    factsheet.to_excel(dataDirectory + \"\\\\output.xlsx\")\r\n    s = factsheet.loc['601100.SH']\r\n\r\n    plt.subplot(221)\r\n    plt.title('Total Revenue', fontname=\"Arial\")\r\n    plt.hist(s[1:5])\r\n    ax.\r\n    plt.plot(s[6:10], 'y--*')\r\n    #plt.legend('total revenue', fontname=\"Arial\")\r\n    # plt.legend('yoy', fontname=\"Arial\")\r\n    # plt.subplot(221)\r\n\r\n    plt.subplot(223)\r\n    plt.plot(s[11:15], 'r--<')\r\n    plt.subplot(224)\r\n    plt.plot(s[16:20], 'b--*')\r\n    plt.show()\r\n    #print(factsheet)\r\n    return factsheet\r\n########################################################################################################################\r\n########################################################################################################################\r\n\r\n\r\ndataDirectory = os.getcwd()+\"\\\\Data\"\r\ntickers = pd.DataFrame(pd.read_excel(dataDirectory+\"\\\\stocks.xlsx\", header=0))\r\noutputFile = open(dataDirectory+\"\\\\output.xlsx\",\"w\")\r\n\r\n\r\nw.start()\r\nif w.isconnected():\r\n    generate_factsheet(tickers)\r\n   # for i in range(tickers.size):\r\n   #     date_begin = \"2015-11-01\"\r\n   #     date_end = \"2020-11-10\"\r\n   #     pe_data(tickers.iat[i, 0], date_begin, date_end)\r\n   # pe_data('300014.SZ', date_begin, date_end)\r\n   #   #   r = list()\r\n   #    #  r.append(stockList.iat[n1, 0])\r\n       # for l in windData.Data:\r\n        #    print(type(l))\r\n         #   r.append(l)\r\n            #r.append(\"{:.2f}\".format(l))\r\n        #print(r)\r\n        #outputData.append(r)\r\n        #print(outputData)\r\n\r\n\r\n     #   print(pd.DataFrame(windData.Data))\r\n     #   outputData.append(pd.DataFrame(windData.Data))\r\n    #print(outputData)\r\n\r\n\r\n    #outputData.to_excel(dataDirectory + \"\\\\output.xlsx\")\r\n        #windData\r\n        #outputData = pd.DataFrame(w.wsd(stockList.iat[0, 0], \"CLOSE, PE_TTM\", \"2020-05-16\", \"2020-06-02\", ).Data[0])\r\n        #outputData.to_excel(dataDirectory+\"\\\\output.xlsx\")\r\n        #print(w.wsd(stockList.iat[n,0], \"CLOSE\", \"2019-06-01\", \"2020-06-02\",).Data)\r\n        #print(w.wsd(\"601318.SH\", \"CLOSE\", \"2019-06-01\", \"2020-06-02\",).Times)\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Trading/wind/factsheet.py	(revision fb685734fbfd1fd873cb5c37a1d6b6ebd78bb285)
++++ Trading/wind/factsheet.py	(date 1605524090569)
+@@ -2,6 +2,7 @@
+ import string
+ from WindPy import w
+ import numpy as np
++import matplotlib
+ import matplotlib.pyplot as plt
+ import pandas as pd
+ import os
+@@ -40,79 +41,76 @@
+             rD = '{0}1231'.format(str(y-5+j))
+             data_wind = w.wss(ticker, "tot_oper_rev, wgsd_yoy_tr, np_belongto_parcomsh, wgsd_yoynetprofit, wgsd_yoynetprofit_deducted","unit=1;rptDate={0};rptType=1".format(rD))
+             for e in data_wind.Data:
+-                col.append(e[0])
++                col.append('{:,.2f}'.format(float(e[0])))
+ 
+-        factsheet = factsheet.append(pd.DataFrame([col], index=[ticker], columns=['证券简称',
+-                                                                                  '{0}总收入'.format(y - 5),
+-                                                                                  '{0}总收入 yoy'.format(y - 5),
+-                                                                                  '{0}归母'.format(y - 5),
+-                                                                                  '{0}归母 yoy'.format(y - 5),
+-                                                                                  '{0}归母扣非 yoy'.format(y - 5),
+-                                                                                  '{0}总收入'.format(y - 4),
+-                                                                                  '{0}总收入 yoy'.format(y - 4),
+-                                                                                  '{0}归母'.format(y - 4),
+-                                                                                  '{0}归母 yoy'.format(y - 4),
+-                                                                                  '{0}归母扣非 yoy'.format(y - 4),
+-                                                                                  '{0}总收入'.format(y - 3),
+-                                                                                  '{0}总收入 yoy'.format(y - 3),
+-                                                                                  '{0}归母'.format(y - 3),
+-                                                                                  '{0}归母 yoy'.format(y - 3),
+-                                                                                  '{0}归母扣非 yoy'.format(y - 3),
+-                                                                                  '{0}总收入'.format(y - 2),
+-                                                                                  '{0}总收入 yoy'.format(y - 2),
+-                                                                                  '{0}归母'.format(y - 2),
+-                                                                                  '{0}归母 yoy'.format(y - 2),
+-                                                                                  '{0}归母扣非 yoy'.format(y - 2),
+-                                                                                  '{0}总收入'.format(y - 1),
+-                                                                                  '{0}总收入 yoy'.format(y - 1),
+-                                                                                  '{0}归母'.format(y - 1),
+-                                                                                  '{0}归母 yoy'.format(y - 1),
+-                                                                                  '{0}归母扣非 yoy'.format(y - 1),
++        factsheet = factsheet.append(pd.DataFrame([col], index=[ticker], columns=['Security Name',
++                                                                                  '{0}Total Revenue'.format(y - 5),
++                                                                                  '{0}Total Revenue yoy'.format(y - 5),
++                                                                                  '{0}Shareholder Profit'.format(y - 5),
++                                                                                  '{0}Shareholder Profit yoy'.format(y - 5),
++                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 5),
++                                                                                  '{0}Total Revenue'.format(y - 4),
++                                                                                  '{0}Total Revenue yoy'.format(y - 4),
++                                                                                  '{0}Shareholder Profit'.format(y - 4),
++                                                                                  '{0}Shareholder Profit yoy'.format(y - 4),
++                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 4),
++                                                                                  '{0}Total Revenue'.format(y - 3),
++                                                                                  '{0}Total Revenue yoy'.format(y - 3),
++                                                                                  '{0}Shareholder Profit'.format(y - 3),
++                                                                                  '{0}Shareholder Profit yoy'.format(y - 3),
++                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 3),
++                                                                                  '{0}Total Revenue'.format(y - 2),
++                                                                                  '{0}Total Revenue yoy'.format(y - 2),
++                                                                                  '{0}Shareholder Profit'.format(y - 2),
++                                                                                  '{0}Shareholder Profit yoy'.format(y - 2),
++                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 2),
++                                                                                  '{0}Total Revenue'.format(y - 1),
++                                                                                  '{0}Total Revenue yoy'.format(y - 1),
++                                                                                  '{0}Shareholder Profit'.format(y - 1),
++                                                                                  '{0}Shareholder Profit yoy'.format(y - 1),
++                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 1),
+                                                                                   ]))
+-        factsheet=factsheet[['证券简称',
+-                             '{0}总收入'.format(y - 5),
+-                             '{0}总收入'.format(y - 4),
+-                             '{0}总收入'.format(y - 3),
+-                             '{0}总收入'.format(y - 2),
+-                             '{0}总收入'.format(y - 1),
+-                             '{0}总收入 yoy'.format(y - 5),
+-                             '{0}总收入 yoy'.format(y - 4),
+-                             '{0}总收入 yoy'.format(y - 3),
+-                             '{0}总收入 yoy'.format(y - 2),
+-                             '{0}总收入 yoy'.format(y - 1),
+-                             '{0}归母'.format(y - 5),
+-                             '{0}归母'.format(y - 4),
+-                             '{0}归母'.format(y - 3),
+-                             '{0}归母'.format(y - 2),
+-                             '{0}归母'.format(y - 1),
+-                             '{0}归母 yoy'.format(y - 5),
+-                             '{0}归母 yoy'.format(y - 4),
+-                             '{0}归母 yoy'.format(y - 3),
+-                             '{0}归母 yoy'.format(y - 2),
+-                             '{0}归母 yoy'.format(y - 1),
+-                             '{0}归母扣非 yoy'.format(y - 5),
+-                             '{0}归母扣非 yoy'.format(y - 4),
+-                             '{0}归母扣非 yoy'.format(y - 3),
+-                             '{0}归母扣非 yoy'.format(y - 2),
+-                             '{0}归母扣非 yoy'.format(y - 1),]]
++        factsheet=factsheet[['Security Name',
++                             '{0}Total Revenue'.format(y - 5),
++                             '{0}Total Revenue'.format(y - 4),
++                             '{0}Total Revenue'.format(y - 3),
++                             '{0}Total Revenue'.format(y - 2),
++                             '{0}Total Revenue'.format(y - 1),
++                             '{0}Total Revenue yoy'.format(y - 5),
++                             '{0}Total Revenue yoy'.format(y - 4),
++                             '{0}Total Revenue yoy'.format(y - 3),
++                             '{0}Total Revenue yoy'.format(y - 2),
++                             '{0}Total Revenue yoy'.format(y - 1),
++                             '{0}Shareholder Profit'.format(y - 5),
++                             '{0}Shareholder Profit'.format(y - 4),
++                             '{0}Shareholder Profit'.format(y - 3),
++                             '{0}Shareholder Profit'.format(y - 2),
++                             '{0}Shareholder Profit'.format(y - 1),
++                             '{0}Shareholder Profit yoy'.format(y - 5),
++                             '{0}Shareholder Profit yoy'.format(y - 4),
++                             '{0}Shareholder Profit yoy'.format(y - 3),
++                             '{0}Shareholder Profit yoy'.format(y - 2),
++                             '{0}Shareholder Profit yoy'.format(y - 1),
++                             '{0}Shareholder Profit Deduct yoy'.format(y - 5),
++                             '{0}Shareholder Profit Deduct yoy'.format(y - 4),
++                             '{0}Shareholder Profit Deduct yoy'.format(y - 3),
++                             '{0}Shareholder Profit Deduct yoy'.format(y - 2),
++                             '{0}Shareholder Profit Deduct yoy'.format(y - 1)]]
+     factsheet.to_excel(dataDirectory + "\\output.xlsx")
+     s = factsheet.loc['601100.SH']
+-
+-    plt.subplot(221)
++    matplotlib.rc('font', size='8')
++    plt.subplot(211)
+     plt.title('Total Revenue', fontname="Arial")
+-    plt.hist(s[1:5])
+-    ax.
+-    plt.plot(s[6:10], 'y--*')
+-    #plt.legend('total revenue', fontname="Arial")
+-    # plt.legend('yoy', fontname="Arial")
+-    # plt.subplot(221)
++    plt.axis([-1, 6, 0, 1000])
++    plt.bar(range(5), [e for e in s.values[1:6]])
+ 
+-    plt.subplot(223)
+-    plt.plot(s[11:15], 'r--<')
+-    plt.subplot(224)
+-    plt.plot(s[16:20], 'b--*')
++    plt.subplot(212)
++    plt.title('Profit to Shareholder', fontname="Arial")
++    plt.axis([0, 5, 0, 500000000])
++    plt.bar(range(5), [e for e in s.values[11:16]])
++
+     plt.show()
+-    #print(factsheet)
++
+     return factsheet
+ ########################################################################################################################
+ ########################################################################################################################
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"979155ef-05f9-48ac-a133-855448a12b1d\" name=\"Default Changelist\" comment=\"PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Trading/wind/Data/output.xlsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Trading/wind/Data/output.xlsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Trading/wind/factsheet.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Trading/wind/factsheet.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"Feisenheim &lt;fchen67@gmail.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1aZ6Z35NRGtjEisEXnLXQ9o2amD\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.general\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.factsheet\">\r\n    <configuration name=\"Stock\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"3D2701\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/AssetClasses\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/AssetClasses/Stock.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"factsheet\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"3D2701\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/Trading/wind\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Trading/wind/factsheet.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"test\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"3D2701\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/Trading/wind\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Trading/wind/test.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"try\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"3D2701\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/Trading\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/Trading/try.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.factsheet\" />\r\n        <item itemvalue=\"Python.Stock\" />\r\n        <item itemvalue=\"Python.test\" />\r\n        <item itemvalue=\"Python.try\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"979155ef-05f9-48ac-a133-855448a12b1d\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1586930820835</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1586930820835</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'\">\r\n      <created>1587122379164</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1587122379164</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'\">\r\n      <created>1599207840666</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1599207840666</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'\">\r\n      <created>1599208135914</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1599208135914</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"sd\">\r\n      <created>1605088559381</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605088559381</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"2020-11-12 from office\">\r\n      <created>1605163609914</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605163609914</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"2020-11-12 from office\">\r\n      <created>1605166397007</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605166397007</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"2020-11-12 from office\">\r\n      <created>1605258202680</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605258202680</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"1\">\r\n      <created>1605258243070</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605258243070</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"d\">\r\n      <created>1605509194584</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605509194584</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"d\">\r\n      <created>1605511060337</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605511060337</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"PC-2016.2.3 &lt;lenovo@lenovo-PC Merge branch 'master'\" />\r\n    <MESSAGE value=\"sd\" />\r\n    <MESSAGE value=\"2020-11-12 from office\" />\r\n    <MESSAGE value=\"1\" />\r\n    <MESSAGE value=\"d\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"d\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"1174\" y=\"355\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog\" timestamp=\"1605490693230\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"1174\" y=\"355\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605490693230\" />\r\n    <state x=\"1500\" y=\"441\" key=\"FileChooserDialogImpl\" timestamp=\"1599207790604\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"1500\" y=\"441\" key=\"FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1599207790604\" />\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1605513093897\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605513093897\" />\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.center\" timestamp=\"1605513093896\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605513093896\" />\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.left\" timestamp=\"1605513093896\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605513093896\" />\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.right\" timestamp=\"1605513093896\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"290\" key=\"GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605513093896\" />\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1605510943123\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605510943123\" />\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.center\" timestamp=\"1605510943123\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605510943123\" />\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.left\" timestamp=\"1605510943123\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605510943123\" />\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.right\" timestamp=\"1605510943123\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"3419\" height=\"492\" key=\"GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605510943123\" />\r\n    <state x=\"1312\" y=\"433\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1605511069136\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"1312\" y=\"433\" key=\"Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1605511069136\" />\r\n    <state x=\"1550\" y=\"491\" key=\"svn.repositoryBrowser\" timestamp=\"1599207891000\">\r\n      <screen x=\"0\" y=\"0\" width=\"3440\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"1550\" y=\"491\" key=\"svn.repositoryBrowser/0.0.3440.1400@0.0.3440.1400\" timestamp=\"1599207891000\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision fb685734fbfd1fd873cb5c37a1d6b6ebd78bb285)
++++ .idea/workspace.xml	(date 1605575072611)
+@@ -234,7 +234,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1605511060337</updated>
+     </task>
+-    <option name="localTasksCounter" value="11" />
++    <task id="LOCAL-00011" summary="d">
++      <created>1605513339362</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1605513339362</updated>
++    </task>
++    <option name="localTasksCounter" value="12" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -267,45 +274,66 @@
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+     <state x="1500" y="441" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1599207790604" />
+-    <state width="3419" height="290" key="GridCell.Tab.0.bottom" timestamp="1605513093897">
++    <state width="3419" height="492" key="GridCell.Tab.0.bottom" timestamp="1605525383562">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="290" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093897" />
+-    <state width="3419" height="290" key="GridCell.Tab.0.center" timestamp="1605513093896">
++    <state width="3419" height="492" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383562" />
++    <state width="3419" height="492" key="GridCell.Tab.0.center" timestamp="1605525383561">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="290" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093896" />
+-    <state width="3419" height="290" key="GridCell.Tab.0.left" timestamp="1605513093896">
++    <state width="3419" height="492" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383561" />
++    <state width="3419" height="492" key="GridCell.Tab.0.left" timestamp="1605525383561">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="290" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093896" />
+-    <state width="3419" height="290" key="GridCell.Tab.0.right" timestamp="1605513093896">
++    <state width="3419" height="492" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383561" />
++    <state width="3419" height="492" key="GridCell.Tab.0.right" timestamp="1605525383562">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="290" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605513093896" />
+-    <state width="3419" height="492" key="GridCell.Tab.1.bottom" timestamp="1605510943123">
++    <state width="3419" height="492" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383562" />
++    <state width="3419" height="492" key="GridCell.Tab.1.bottom" timestamp="1605525383563">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="492" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
+-    <state width="3419" height="492" key="GridCell.Tab.1.center" timestamp="1605510943123">
++    <state width="3419" height="492" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383563" />
++    <state width="3419" height="492" key="GridCell.Tab.1.center" timestamp="1605525383562">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="492" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
+-    <state width="3419" height="492" key="GridCell.Tab.1.left" timestamp="1605510943123">
++    <state width="3419" height="492" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383562" />
++    <state width="3419" height="492" key="GridCell.Tab.1.left" timestamp="1605525383562">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="492" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
+-    <state width="3419" height="492" key="GridCell.Tab.1.right" timestamp="1605510943123">
++    <state width="3419" height="492" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383562" />
++    <state width="3419" height="492" key="GridCell.Tab.1.right" timestamp="1605525383562">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state width="3419" height="492" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
+-    <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1605511069136">
++    <state width="3419" height="492" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605525383562" />
++    <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1605513345377">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+-    <state x="1312" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1605511069136" />
++    <state x="1312" y="433" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1605513345377" />
+     <state x="1550" y="491" key="svn.repositoryBrowser" timestamp="1599207891000">
+       <screen x="0" y="0" width="3440" height="1400" />
+     </state>
+     <state x="1550" y="491" key="svn.repositoryBrowser/0.0.3440.1400@0.0.3440.1400" timestamp="1599207891000" />
+   </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/Trading/wind/factsheet.py</url>
++          <line>106</line>
++          <option name="timeStamp" value="16" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/Trading/wind/factsheet.py</url>
++          <line>104</line>
++          <option name="timeStamp" value="17" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/Trading/wind/factsheet.py</url>
++          <line>102</line>
++          <option name="timeStamp" value="18" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++  </component>
+ </project>
+\ No newline at end of file

@@ -21,9 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading/wind/Data/output.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Data/output.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading/wind/factsheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/factsheet.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605548215925</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update industry analysis">
+      <created>1605686663713</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1605686663713</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -297,7 +301,8 @@
     <MESSAGE value="2020-11-12 from office" />
     <MESSAGE value="1" />
     <MESSAGE value="d" />
-    <option name="LAST_COMMIT_MESSAGE" value="d" />
+    <MESSAGE value="update industry analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="update industry analysis" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1174" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605490693230">
@@ -352,10 +357,10 @@
     </state>
     <state width="3419" height="492" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
     <state width="2027" height="316" key="GridCell.Tab.1.right/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605545050522" />
-    <state x="1221" y="344" key="SettingsEditor" timestamp="1605686314492">
+    <state x="1221" y="344" key="SettingsEditor" timestamp="1605686970090">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1221" y="344" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1605686314492" />
+    <state x="1221" y="344" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1605686970090" />
     <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1605511069136">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
