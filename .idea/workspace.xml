@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="" />
+    <list default="true" id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trading/wind/Data/output.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Data/output.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/Factor_Industry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trading/wind/factsheet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trading/wind/factsheet.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.Factor_Industry">
     <configuration name="Factor_Industry" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -165,11 +170,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.factsheet" />
+      <item itemvalue="Python.Factor_Industry" />
       <item itemvalue="Python.Stock" />
+      <item itemvalue="Python.factsheet" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.try" />
-      <item itemvalue="Python.Factor_Industry" />
     </list>
     <recent_temporary>
       <list>
@@ -187,7 +192,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="979155ef-05f9-48ac-a133-855448a12b1d" name="Default Changelist" comment="" />
+      <changelist id="6c169fdf-ee91-4b47-bae1-c878da31a06a" name="Default Changelist" comment="" />
       <created>1586930820835</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -347,6 +352,10 @@
     </state>
     <state width="3419" height="492" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1605510943123" />
     <state width="2027" height="316" key="GridCell.Tab.1.right/2048.-56.1920.1160/0.0.2048.1112@0.0.2048.1112" timestamp="1605545050522" />
+    <state x="1221" y="344" key="SettingsEditor" timestamp="1605686314492">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1221" y="344" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1605686314492" />
     <state x="1312" y="433" key="Vcs.Push.Dialog.v2" timestamp="1605511069136">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>

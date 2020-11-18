@@ -9,16 +9,20 @@ import os
 
 matplotlib.rc('font', **{'size': 8})
 
-Industry_Code_SW_Level1 = ['6105000000000000', '1000012617000000', '6105020500000000', '1000012541000000', '6105010000000000',
-                           '6102000000000000', '6103000000000000', '6104000000000000', '6106010000000000', '6106020000000000',
-                           '6107010000000000', '6107000000000000', '1000012579000000', '1000012588000000', '6111000000000000',
-                           '6113000000000000', '6114000000000000', '6120000000000000', '6101000000000000', '6112000000000000',
-                           '6121000000000000', '6115000000000000', '6116000000000000', '6117000000000000', '6118000000000000',
-                           '6108000000000000', '1000012601000000', '6122010000000000', '1000012611000000', '1000012612000000',
-                           '1000012613000000', '6123000000000000']
-Industry_Name_SW_Level1 = ['Banks', 'Real estate', 'Construction', 'Coal', 'Insurance', 'Steel', 'Toll roads', 'Construction materials', 'Agriculture', 'Diversified financials', 'Power', 'Shipping', 'Paper making', 'Ports', 'Oil & gas', 'Railway', 'Chemicals', 'Home appliance', 'Auto', 'Auto parts', 'Environment protection', 'Securities', 'Retail', 'Logistics', 'Textiles & apparels', 'Machinery', 'Light manufacturing', 'Non-ferrous metal', 'Electrical equipment', 'Telecom', 'Airlines', 'Electronics', 'Health Care', 'Media', 'Food & beverage', 'Airports', 'Tourism', 'Defense', '', ]
+Industry_Code_SW_Level1 = ['6102000000000000', '6103000000000000', '6104000000000000', '6105000000000000', '6106010000000000',
+                           '6106020000000000', '6107010000000000', '6107000000000000', '1000012579000000', '1000012588000000',
+                           '6111000000000000', '6113000000000000', '6114000000000000', '6120000000000000', '6101000000000000',
+                           '6112000000000000', '6116000000000000', '6108000000000000', '6123000000000000', '1000012613000000',
+                           '1000012612000000', '6122010000000000', '1000012611000000', '1000012601000000', '6117000000000000',
+                           '6121000000000000', '6115000000000000', '6118000000000000']
 
 
+Industry_Name_SW_Level1 = ['Mining',           'Chemicals',             'Steel',               'Non-ferrous Metal', 'Construction Materials',
+                           'Construction',     'Electrical Equipments', 'Machinery',           'Defense',           'Autos',
+                           'Home Appliance',   'Textiles & Apparels',   'Light manufacturing', 'Commerce',          'Agriculture',
+                           'Food & Beverage',  'Facilities',            'Electronics',         'Generals....',      'Non-Banking Financials',
+                           'Banks',            'Media',                 'Telecoms',            'Computing',         'Logistics',
+                           'Leisure Serivces', 'Health Care',           'Real Estate']
 
 w.start()
 if w.isconnected():
@@ -44,18 +48,18 @@ if w.isconnected():
 
     plt.subplot(141)
     plt.barh(Industry_Code_SW_Level1, m['yearly_growth'])
-    plt.title('一级行业年涨幅', fontproperties="SimSun")
+    plt.title('Yearly Changes', fontproperties="SimSun")
     plt.subplot(142)
-    plt.barh(range(32), m['monthly_growth'].values)
-    plt.title('一级行业月涨幅', fontproperties="SimSun")
+    plt.barh(Industry_Code_SW_Level1, m['monthly_growth'].values)
+    plt.title('Monthly Changes', fontproperties="SimSun")
     plt.tick_params(labelleft=False, left=False)
     plt.subplot(143)
-    plt.barh(range(32), m['weekly_growth'].values)
-    plt.title('一级行业十天涨幅', fontproperties="SimSun")
+    plt.barh(Industry_Code_SW_Level1, m['weekly_growth'].values)
+    plt.title('10-day Changes', fontproperties="SimSun")
     plt.tick_params(labelleft=False, left=False)
     plt.subplot(144)
-    plt.barh(range(32), m['daily_growth'].values)
-    plt.title('一级行业三天涨幅', fontproperties="SimSun")
+    plt.barh(Industry_Code_SW_Level1, m['daily_growth'].values)
+    plt.title('3-day Changes', fontproperties="SimSun")
     plt.tick_params(labelleft=False, left=False)
 
     plt.show()

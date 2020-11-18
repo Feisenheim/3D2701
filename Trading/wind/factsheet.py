@@ -2,6 +2,7 @@ import datetime
 import string
 from WindPy import w
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
@@ -40,79 +41,76 @@ def generate_factsheet(tickers):
             rD = '{0}1231'.format(str(y-5+j))
             data_wind = w.wss(ticker, "tot_oper_rev, wgsd_yoy_tr, np_belongto_parcomsh, wgsd_yoynetprofit, wgsd_yoynetprofit_deducted","unit=1;rptDate={0};rptType=1".format(rD))
             for e in data_wind.Data:
-                col.append(e[0])
+                col.append('{:,.2f}'.format(float(e[0])))
 
-        factsheet = factsheet.append(pd.DataFrame([col], index=[ticker], columns=['证券简称',
-                                                                                  '{0}总收入'.format(y - 5),
-                                                                                  '{0}总收入 yoy'.format(y - 5),
-                                                                                  '{0}归母'.format(y - 5),
-                                                                                  '{0}归母 yoy'.format(y - 5),
-                                                                                  '{0}归母扣非 yoy'.format(y - 5),
-                                                                                  '{0}总收入'.format(y - 4),
-                                                                                  '{0}总收入 yoy'.format(y - 4),
-                                                                                  '{0}归母'.format(y - 4),
-                                                                                  '{0}归母 yoy'.format(y - 4),
-                                                                                  '{0}归母扣非 yoy'.format(y - 4),
-                                                                                  '{0}总收入'.format(y - 3),
-                                                                                  '{0}总收入 yoy'.format(y - 3),
-                                                                                  '{0}归母'.format(y - 3),
-                                                                                  '{0}归母 yoy'.format(y - 3),
-                                                                                  '{0}归母扣非 yoy'.format(y - 3),
-                                                                                  '{0}总收入'.format(y - 2),
-                                                                                  '{0}总收入 yoy'.format(y - 2),
-                                                                                  '{0}归母'.format(y - 2),
-                                                                                  '{0}归母 yoy'.format(y - 2),
-                                                                                  '{0}归母扣非 yoy'.format(y - 2),
-                                                                                  '{0}总收入'.format(y - 1),
-                                                                                  '{0}总收入 yoy'.format(y - 1),
-                                                                                  '{0}归母'.format(y - 1),
-                                                                                  '{0}归母 yoy'.format(y - 1),
-                                                                                  '{0}归母扣非 yoy'.format(y - 1),
+        factsheet = factsheet.append(pd.DataFrame([col], index=[ticker], columns=['Security Name',
+                                                                                  '{0}Total Revenue'.format(y - 5),
+                                                                                  '{0}Total Revenue yoy'.format(y - 5),
+                                                                                  '{0}Shareholder Profit'.format(y - 5),
+                                                                                  '{0}Shareholder Profit yoy'.format(y - 5),
+                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 5),
+                                                                                  '{0}Total Revenue'.format(y - 4),
+                                                                                  '{0}Total Revenue yoy'.format(y - 4),
+                                                                                  '{0}Shareholder Profit'.format(y - 4),
+                                                                                  '{0}Shareholder Profit yoy'.format(y - 4),
+                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 4),
+                                                                                  '{0}Total Revenue'.format(y - 3),
+                                                                                  '{0}Total Revenue yoy'.format(y - 3),
+                                                                                  '{0}Shareholder Profit'.format(y - 3),
+                                                                                  '{0}Shareholder Profit yoy'.format(y - 3),
+                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 3),
+                                                                                  '{0}Total Revenue'.format(y - 2),
+                                                                                  '{0}Total Revenue yoy'.format(y - 2),
+                                                                                  '{0}Shareholder Profit'.format(y - 2),
+                                                                                  '{0}Shareholder Profit yoy'.format(y - 2),
+                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 2),
+                                                                                  '{0}Total Revenue'.format(y - 1),
+                                                                                  '{0}Total Revenue yoy'.format(y - 1),
+                                                                                  '{0}Shareholder Profit'.format(y - 1),
+                                                                                  '{0}Shareholder Profit yoy'.format(y - 1),
+                                                                                  '{0}Shareholder Profit Deduct yoy'.format(y - 1),
                                                                                   ]))
-        factsheet=factsheet[['证券简称',
-                             '{0}总收入'.format(y - 5),
-                             '{0}总收入'.format(y - 4),
-                             '{0}总收入'.format(y - 3),
-                             '{0}总收入'.format(y - 2),
-                             '{0}总收入'.format(y - 1),
-                             '{0}总收入 yoy'.format(y - 5),
-                             '{0}总收入 yoy'.format(y - 4),
-                             '{0}总收入 yoy'.format(y - 3),
-                             '{0}总收入 yoy'.format(y - 2),
-                             '{0}总收入 yoy'.format(y - 1),
-                             '{0}归母'.format(y - 5),
-                             '{0}归母'.format(y - 4),
-                             '{0}归母'.format(y - 3),
-                             '{0}归母'.format(y - 2),
-                             '{0}归母'.format(y - 1),
-                             '{0}归母 yoy'.format(y - 5),
-                             '{0}归母 yoy'.format(y - 4),
-                             '{0}归母 yoy'.format(y - 3),
-                             '{0}归母 yoy'.format(y - 2),
-                             '{0}归母 yoy'.format(y - 1),
-                             '{0}归母扣非 yoy'.format(y - 5),
-                             '{0}归母扣非 yoy'.format(y - 4),
-                             '{0}归母扣非 yoy'.format(y - 3),
-                             '{0}归母扣非 yoy'.format(y - 2),
-                             '{0}归母扣非 yoy'.format(y - 1),]]
+        factsheet=factsheet[['Security Name',
+                             '{0}Total Revenue'.format(y - 5),
+                             '{0}Total Revenue'.format(y - 4),
+                             '{0}Total Revenue'.format(y - 3),
+                             '{0}Total Revenue'.format(y - 2),
+                             '{0}Total Revenue'.format(y - 1),
+                             '{0}Total Revenue yoy'.format(y - 5),
+                             '{0}Total Revenue yoy'.format(y - 4),
+                             '{0}Total Revenue yoy'.format(y - 3),
+                             '{0}Total Revenue yoy'.format(y - 2),
+                             '{0}Total Revenue yoy'.format(y - 1),
+                             '{0}Shareholder Profit'.format(y - 5),
+                             '{0}Shareholder Profit'.format(y - 4),
+                             '{0}Shareholder Profit'.format(y - 3),
+                             '{0}Shareholder Profit'.format(y - 2),
+                             '{0}Shareholder Profit'.format(y - 1),
+                             '{0}Shareholder Profit yoy'.format(y - 5),
+                             '{0}Shareholder Profit yoy'.format(y - 4),
+                             '{0}Shareholder Profit yoy'.format(y - 3),
+                             '{0}Shareholder Profit yoy'.format(y - 2),
+                             '{0}Shareholder Profit yoy'.format(y - 1),
+                             '{0}Shareholder Profit Deduct yoy'.format(y - 5),
+                             '{0}Shareholder Profit Deduct yoy'.format(y - 4),
+                             '{0}Shareholder Profit Deduct yoy'.format(y - 3),
+                             '{0}Shareholder Profit Deduct yoy'.format(y - 2),
+                             '{0}Shareholder Profit Deduct yoy'.format(y - 1)]]
     factsheet.to_excel(dataDirectory + "\\output.xlsx")
     s = factsheet.loc['601100.SH']
-
-    plt.subplot(221)
+    matplotlib.rc('font', size='8')
+    plt.subplot(211)
     plt.title('Total Revenue', fontname="Arial")
-    plt.hist(s[1:5])
-    ax.
-    plt.plot(s[6:10], 'y--*')
-    #plt.legend('total revenue', fontname="Arial")
-    # plt.legend('yoy', fontname="Arial")
-    # plt.subplot(221)
+    plt.axis([-1, 6, 0, 1000])
+    plt.bar(range(5), [e for e in s.values[1:6]])
 
-    plt.subplot(223)
-    plt.plot(s[11:15], 'r--<')
-    plt.subplot(224)
-    plt.plot(s[16:20], 'b--*')
+    plt.subplot(212)
+    plt.title('Profit to Shareholder', fontname="Arial")
+    plt.axis([0, 5, 0, 500000000])
+    plt.bar(range(5), [e for e in s.values[11:16]])
+
     plt.show()
-    #print(factsheet)
+
     return factsheet
 ########################################################################################################################
 ########################################################################################################################
