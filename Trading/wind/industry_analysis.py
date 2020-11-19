@@ -47,18 +47,18 @@ if w.isconnected():
     m['yearly_growth'] = m['date_now']/m['date_pre_y']-1
 
     plt.subplot(141)
-    plt.barh(Industry_Code_SW_Level1, m['yearly_growth'])
+    plt.barh(Industry_Name_SW_Level1, m['yearly_growth'])
     plt.title('Yearly Changes', fontproperties="SimSun")
     plt.subplot(142)
-    plt.barh(Industry_Code_SW_Level1, m['monthly_growth'].values)
+    plt.barh(Industry_Name_SW_Level1, m['monthly_growth'].values)
     plt.title('Monthly Changes', fontproperties="SimSun")
     plt.tick_params(labelleft=False, left=False)
     plt.subplot(143)
-    plt.barh(Industry_Code_SW_Level1, m['weekly_growth'].values)
+    plt.barh(Industry_Name_SW_Level1, m['weekly_growth'].values)
     plt.title('10-day Changes', fontproperties="SimSun")
     plt.tick_params(labelleft=False, left=False)
     plt.subplot(144)
-    plt.barh(Industry_Code_SW_Level1, m['daily_growth'].values)
+    plt.barh(Industry_Name_SW_Level1, m['daily_growth'].values)
     plt.title('3-day Changes', fontproperties="SimSun")
     plt.tick_params(labelleft=False, left=False)
 
